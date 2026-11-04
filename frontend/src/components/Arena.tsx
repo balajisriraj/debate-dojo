@@ -362,7 +362,7 @@ export function Arena({ id, health }: { id: string; health: Health | null }) {
               </p>
             </section>
             <section className="ring-card">
-              <h2 className="ring-title">{session.mode === "debate" ? "The opponent" : session.persona.role}</h2>
+              <h2 className="ring-title">{copy.opponentLabel}</h2>
               <p className="ring-persona">{session.persona.name}</p>
               <p className="muted">{session.persona.style}</p>
             </section>

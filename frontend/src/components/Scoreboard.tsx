@@ -30,6 +30,9 @@ export function Scoreboard({
   const copy = MODE_COPY[session.mode];
   const yourRole = session.side ?? (session.mode === "meeting" ? "Presenting" : "Selling");
   const theirRole = session.mode === "debate" ? (session.side === "proposition" ? "Opposition" : "Proposition") : session.persona.role;
+  // The persona's name repeats the role, so the subline says what they will push on instead.
+  const focus = session.mode === "meeting" ? session.persona.concerns : session.persona.objections;
+  const theirFocus = session.mode === "debate" ? session.persona.role : focus.map((f, i) => (i ? f : f[0].toUpperCase() + f.slice(1))).join(" · ");
   const low = clock === "running" && remaining <= 10;
   return (
     <section className={`scoreboard mode-${session.mode}`} aria-label="Scoreboard">
@@ -62,7 +65,7 @@ export function Scoreboard({
         <div className={`corner corner-opp ${clock === "opponent" ? "is-up" : ""}`}>
           <span className="corner-label">{copy.opponentLabel}</span>
           <span className="corner-role">{theirRole}</span>
-          <span className="corner-stat">{session.persona.name}</span>
+          <span className="corner-stat">{theirFocus}</span>
         </div>
       </div>
       <p className="board-topic">
