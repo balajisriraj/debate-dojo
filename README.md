@@ -132,11 +132,18 @@ frontend/
   src/delivery.ts     the live delivery meter
   src/session.ts      one reducer folds streamed events into the arena
 fixtures/             delivery-metric cases shared by both test suites
+promo/                the film: capture.mjs drives the app, film.ts is the cut, kit/ renders and scores it
 ```
 
 ## The film
 
-The promo is made in code from the running app, not screen-recorded; it will be added here.
+The promo is made in code, not screen-recorded. `promo/capture.mjs` runs the real app on the scripted model, with its own API and UI, and drives it the way a person would: it sets up a meeting and a sales call, then fights a full Oxford-style bout, typing the opening at a human pace, speaking the rebuttal and waiting for the judges and the coach. Headless Chrome has no microphone, so for the spoken turn a stand-in for the Web Speech API says the words at speaking pace and the app's own voice code times them. It saves DOM snapshots of each moment. `promo/kit/render.mjs` replays those snapshots as live HTML with a moving camera, captions and kinetic type, renders the film frame by frame and adds an original score synthesised in Python (`promo/kit/score.py`).
+
+```bash
+cd promo && pnpm install
+node capture.mjs        # snapshots of the real UI
+node kit/render.mjs     # the film, in promo/out/ (upload the -web.mp4 to the README)
+```
 
 ---
 

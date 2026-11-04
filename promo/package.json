@@ -1,0 +1,13 @@
+{
+  "name": "debate-dojo-promo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "node capture.mjs",
+    "render": "node kit/render.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "puppeteer-core": "^24.0.0"
+  }
+}
