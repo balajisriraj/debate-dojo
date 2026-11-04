@@ -1,0 +1,202 @@
+# Judge-calibration cases. Each one runs a full session through the graph: every turn, the
+# fact-checker, the opponent, then the judge and the coach.
+#
+# Per case:
+#   turns         the user's turns: text, and optionally input (voice|typed), talk_seconds, longest_pause_s
+#   flagged       phrases that must appear in a fact-check flag
+#   not_flagged   phrases that must not
+#   scores        bounds on criteria, e.g. {acknowledge: {max: 3}}
+#   reply_includes  {turn number: phrase} the opponent's reply to that turn must contain
+#
+# Every case is also checked for:
+#   report      an explanation and a quote for every rubric criterion, each quote the user's own words
+#   coach       three improvements and a rewrite of a real turn
+#   engages     every opponent reply picks up the words of the turn it answers
+#   style       no em or en dashes anywhere in what the agents wrote
+
+- id: debate-unsupported-statistic
+  mode: debate
+  format: oxford
+  side: proposition
+  topic: This house would ban smartphones in schools
+  turns:
+    - text: Phones destroy concentration. Studies show that 73% of teachers say phones are the biggest distraction in class. A ban is simple and fair.
+    - text: My opponent called a ban a blunt instrument. But a clear rule means teachers stop policing every desk, which gives lessons back their time.
+    - text: In summary, attention is what school is for, and the motion protects it.
+  flagged: ["73%"]
+  scores:
+    evidence: { max: 4 }
+
+- id: debate-sourced-evidence-not-flagged
+  mode: debate
+  format: oxford
+  side: opposition
+  topic: This house would make voting compulsory
+  turns:
+    - text: >-
+        First, compulsion changes who votes but not how informed they are. For example, a voter forced to the
+        booth with no interest in the race is likely to pick at random, which adds noise rather than a voice.
+        Second, according to the electoral commission's published turnout figures, turnout is lowest among
+        people who feel unheard, and that is a problem of trust, not of law.
+    - text: >-
+        You said compulsory voting makes politicians listen to everyone. But they listen to people who are
+        persuadable and informed, which compulsion does not create. Take a first-time voter who resents the
+        fine: their vote is a protest, not a preference.
+    - text: To conclude, the other side treats a symptom. We fix the cause, because trust is earned, not ordered.
+  not_flagged: ["according to the electoral commission"]
+  scores:
+    evidence: { min: 6 }
+    structure: { min: 6 }
+
+- id: debate-ignores-opponent
+  mode: debate
+  format: oxford
+  side: proposition
+  topic: This house believes city centres should be car-free
+  turns:
+    - text: Cars make city centres loud, dangerous and dirty. Removing them makes streets safer for children, because traffic is the main danger on a high street.
+    - text: Cities should be for people. Parks are nice. Walking is healthy and cycling is fun, and people enjoy cafes outside.
+    - text: People like walking. That is why the motion should pass.
+  scores:
+    rebuttal: { max: 4 }
+
+- id: debate-strong-rebuttal
+  mode: debate
+  format: oxford
+  side: proposition
+  topic: This house would ban smartphones in schools
+  turns:
+    - text: First, attention is the scarcest resource in a classroom, because every interruption costs minutes of focus. Second, a rule applies equally to every pupil, which makes it fair.
+    - text: >-
+        My opponent says the ban is a blunt instrument that treats every case the same. But treating every
+        case the same is the point, because a rule that applies to everyone cannot be gamed. They claim it
+        moves the behaviour somewhere less visible. Yet during lessons there is nowhere less visible to move
+        it to, which means the displacement argument fails inside the classroom.
+    - text: In summary, they never answered fairness, and their displacement point collapsed once you look at school hours.
+  scores:
+    rebuttal: { min: 7 }
+
+- id: debate-filler-heavy-delivery
+  mode: debate
+  format: rapid-fire
+  side: opposition
+  topic: This house believes remote work does more good than harm
+  turns:
+    - { text: "Um so like, basically remote work is, uh, you know, kind of isolating for people.", input: voice, talk_seconds: 28, longest_pause_s: 4.5 }
+    - { text: "Uh, I mean, basically, like, teams sort of lose touch, um, over time.", input: voice, talk_seconds: 27, longest_pause_s: 3.8 }
+    - { text: "You know, um, juniors basically learn by, uh, watching people.", input: voice, talk_seconds: 26 }
+    - { text: "Like, um, the office is, you know, where trust is built.", input: voice, talk_seconds: 25 }
+    - { text: "So, uh, basically, it does more harm.", input: voice, talk_seconds: 12 }
+  scores:
+    delivery: { max: 4 }
+
+- id: debate-clean-delivery
+  mode: debate
+  format: rapid-fire
+  side: proposition
+  topic: This house believes remote work does more good than harm
+  turns:
+    - { text: "Remote work gives people back the hours they used to spend commuting, and they spend that time on work and family.", input: voice, talk_seconds: 7.5, longest_pause_s: 0.8 }
+    - { text: "You say teams lose touch. Teams that write things down stay in touch better, because nothing depends on who was in the room.", input: voice, talk_seconds: 8.5, longest_pause_s: 1.1 }
+    - { text: "Juniors learn from feedback, not from proximity. Good managers give feedback anywhere.", input: voice, talk_seconds: 5.5, longest_pause_s: 0.9 }
+    - { text: "Trust is built by delivering what you promised. Remote teams can do that every week.", input: voice, talk_seconds: 6, longest_pause_s: 0.7 }
+    - { text: "So the evidence of flexibility is in how people choose to work when they are given the option.", input: voice, talk_seconds: 6.5, longest_pause_s: 0.6 }
+  scores:
+    delivery: { min: 7 }
+
+- id: rapid-fire-absolutes-are-doubtful
+  mode: debate
+  format: rapid-fire
+  side: proposition
+  topic: This house would make voting compulsory
+  turns:
+    - text: Everyone agrees that democracy needs participation.
+    - text: Compulsory voting never fails anywhere it has been tried.
+    - text: It is the best way to make politicians listen.
+    - text: A small fine is enough to change behaviour.
+    - text: So participation goes up and everyone is represented.
+  flagged: ["Everyone agrees", "never fails", "the best way"]
+
+- id: lincoln-douglas-answers-the-question
+  mode: debate
+  format: lincoln-douglas
+  side: proposition
+  topic: This house would ban smartphones in schools
+  turns:
+    - text: My value is learning, and my criterion is whether a policy protects the time pupils have to learn. Phones take that time, because every notification breaks focus.
+    - text: Do you accept that a notification in a lesson interrupts learning?
+    - text: If a rule protects learning for every pupil, why is that not liberty for the pupil who wants to learn?
+    - text: What would you do instead, and how would you measure it?
+    - text: My opponent answered with liberty, but liberty to be distracted is not worth more than the chance to learn. The ban protects learning, which is my criterion.
+  reply_includes:
+    2: "You asked"
+    3: "You asked"
+
+- id: meeting-no-clear-ask
+  mode: meeting
+  persona: finance-director
+  topic: Replace the weekly status meeting with written updates
+  turns:
+    - text: I think maybe we could kind of try written updates instead of the status meeting, because people seem tired of it.
+    - text: I'm not sure about the cost exactly, it probably depends on how people feel about it.
+    - text: People would probably like it more. It feels more modern.
+    - text: It might be good for everyone.
+    - text: Anyway, it's just an idea we could think about at some point.
+  scores:
+    ask: { max: 4 }
+    data: { max: 4 }
+
+- id: meeting-data-and-a-clear-ask
+  mode: meeting
+  persona: engineering-lead
+  topic: Build a shared design system before the next product launch
+  turns:
+    - text: I propose we spend six weeks building a shared design system before the launch. Right now each team rebuilds the same components, and we have counted 40 versions of the same button.
+    - text: That's a fair question. What breaks first is consistency during the switch, so we migrate one screen at a time and test each one before the next, which means we can stop at any point.
+    - text: I understand your team is at capacity. Two engineers from my team will build it, and your team only reviews, about two hours a week.
+    - text: You're right that maintenance is where these die. I will own it for a year, with a monthly review with you, because we both want fewer surprises in delivery.
+    - text: So my ask is clear. Can we agree to start on Monday, with a review together at the end of week three?
+  scores:
+    data: { min: 6 }
+    pushback: { min: 6 }
+    ask: { min: 7 }
+
+- id: sales-ignores-the-objection
+  mode: sales
+  persona: procurement-manager
+  topic: A booking and reminders tool for independent clinics
+  context: "Buyer: practice manager at a mid-sized clinic"
+  turns:
+    - text: Hi, our product is a booking and reminders tool. It has lots of features.
+    - text: It has online booking, text reminders and a dashboard. The dashboard is really nice.
+    - text: We also have a mobile app and integrations. Our design team is very proud of it.
+    - text: The reporting module shows you everything in one place.
+    - text: There are three pricing tiers to choose from.
+    - text: Let me know what you think.
+  scores:
+    acknowledge: { max: 3 }
+    next_step: { max: 4 }
+
+- id: sales-handles-objections-well
+  mode: sales
+  persona: it-director
+  topic: An expense-approval app for growing teams
+  context: "Buyer: finance lead at a fifty-person company"
+  turns:
+    - text: Thanks for making the time. Before I say anything about us, how do expense approvals work for you today?
+    - text: >-
+        I understand, and switching is a real project, so it should earn its place. What do people like
+        about the current system? Rather than replace it, we run alongside it for a month, and teams like
+        yours usually measure the value in hours saved each week.
+    - text: >-
+        That's a fair concern. Can I ask what you're comparing it with? Compared with the time your managers
+        spend chasing receipts every month, the cost of doing nothing is the bigger number.
+    - text: >-
+        That makes sense, nobody wants a project in a busy quarter. What's taking most of your time right now?
+        A pilot with one team takes an afternoon to set up, so the busy quarter is when it saves the most.
+    - text: Of course, she should be part of it. What will matter most to her? I can send a one-page case and the results from a trial for her to review.
+    - text: Can we book a thirty minute demo with you and your manager next Tuesday at ten, and agree then whether to start the pilot?
+  scores:
+    acknowledge: { min: 7 }
+    clarify: { min: 7 }
+    next_step: { min: 7 }

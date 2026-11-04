@@ -1,0 +1,23 @@
+id: sales
+name: Objection drill
+mode: sales
+blurb: Open, handle four objections, then close for a next step.
+phases:
+  - id: opening
+    name: Opening
+    exchanges: 1
+    seconds: 90
+    you: Open the conversation. Show you understand their world before you pitch.
+    opponent: object
+  - id: objections
+    name: Objections
+    exchanges: 4
+    seconds: 60
+    you: Handle the objection. Acknowledge it, clarify it, reframe it, back it up.
+    opponent: object
+  - id: close
+    name: Close
+    exchanges: 1
+    seconds: 60
+    you: Ask for a concrete next step with a date on it.
+    opponent: decide

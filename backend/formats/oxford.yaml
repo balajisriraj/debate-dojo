@@ -1,0 +1,25 @@
+# A format is data: an ordered list of timed phases. In every exchange you speak first and
+# the opponent answers. `seconds` is your turn limit; the user can change it before a session.
+id: oxford
+name: Oxford-style
+mode: debate
+blurb: Three set speeches each. Build your case, take theirs apart, then land it.
+phases:
+  - id: opening
+    name: Opening
+    exchanges: 1
+    seconds: 180
+    you: Set out your case. Define the motion, give your two or three strongest arguments.
+    opponent: opening
+  - id: rebuttal
+    name: Rebuttal
+    exchanges: 1
+    seconds: 120
+    you: Take apart their case. Answer their best point first, then rebuild your own.
+    opponent: rebuttal
+  - id: closing
+    name: Closing
+    exchanges: 1
+    seconds: 90
+    you: No new arguments. Tell the room why your side won the clashes that mattered.
+    opponent: closing

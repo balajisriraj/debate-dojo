@@ -1,0 +1,23 @@
+id: lincoln-douglas
+name: Lincoln-Douglas-style
+mode: debate
+blurb: A value-led case, a cross-examination you lead, then a rebuttal.
+phases:
+  - id: constructive
+    name: Constructive
+    exchanges: 1
+    seconds: 240
+    you: Name the value at stake and the criterion for judging it, then build your case on it.
+    opponent: constructive
+  - id: cross-examination
+    name: Cross-examination
+    exchanges: 3
+    seconds: 60
+    you: Ask one sharp question at a time. Expose a gap in their case. Questions, not speeches.
+    opponent: answer
+  - id: rebuttal
+    name: Rebuttal
+    exchanges: 1
+    seconds: 150
+    you: Use what the cross-examination exposed. Show why your value and your case still stand.
+    opponent: rebuttal

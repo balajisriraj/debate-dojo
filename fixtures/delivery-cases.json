@@ -1,0 +1,26 @@
+{
+  "fillers": [
+    { "text": "Um, I think, uh, the policy works.", "expect": { "um": 1, "uh": 1 } },
+    { "text": "umm so like we basically need to you know move faster", "expect": { "um": 1, "like": 1, "basically": 1, "you know": 1 } },
+    { "text": "I like this proposal and I would like a decision", "expect": {} },
+    { "text": "It looks like rain and it feels like a long week", "expect": {} },
+    { "text": "Do you know what the cost is? You know, nobody does.", "expect": { "you know": 1 } },
+    { "text": "it was like really expensive and it's like um not worth it", "expect": { "like": 2, "um": 1 } },
+    { "text": "What sort of evidence would change your mind? It is sort of obvious.", "expect": { "sort of": 1 } },
+    { "text": "Erm, basically, basically the answer is no, you know.", "expect": { "um": 1, "basically": 2, "you know": 1 } },
+    { "text": "That is just like the last plan, which failed.", "expect": {} },
+    { "text": "So, like, the numbers don't add up.", "expect": { "like": 1 } },
+    { "text": "", "expect": {} }
+  ],
+  "words": [
+    { "text": "Phones distract pupils, and attention is the scarcest resource in a classroom.", "words": 12 },
+    { "text": "It's a fair point - but it isn't the whole point.", "words": 10 },
+    { "text": "", "words": 0 }
+  ],
+  "wpm": [
+    { "words": 150, "seconds": 60, "wpm": 150 },
+    { "words": 40, "seconds": 15, "wpm": 160 },
+    { "words": 10, "seconds": 2, "wpm": null },
+    { "words": 0, "seconds": 30, "wpm": null }
+  ]
+}

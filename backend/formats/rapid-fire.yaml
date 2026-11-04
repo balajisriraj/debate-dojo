@@ -1,0 +1,11 @@
+id: rapid-fire
+name: Rapid fire
+mode: debate
+blurb: Five quick exchanges. One point per turn, no warm-up.
+phases:
+  - id: rapid
+    name: Rapid fire
+    exchanges: 5
+    seconds: 30
+    you: One point, said cleanly. Answer what they just said, then hit back.
+    opponent: rapid

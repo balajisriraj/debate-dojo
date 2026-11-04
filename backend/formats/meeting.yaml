@@ -1,0 +1,23 @@
+id: meeting
+name: Meeting run-through
+mode: meeting
+blurb: Pitch your proposal, take the pushback, then make your ask.
+phases:
+  - id: pitch
+    name: Pitch
+    exchanges: 1
+    seconds: 120
+    you: Say what you propose, why now, and what it will take. Lead with the outcome.
+    opponent: probe
+  - id: pushback
+    name: Pushback
+    exchanges: 3
+    seconds: 90
+    you: Answer the concern they just raised. Acknowledge it, bring data, find common ground.
+    opponent: pushback
+  - id: ask
+    name: The ask
+    exchanges: 1
+    seconds: 60
+    you: Make a clear, specific ask. Who decides what, by when.
+    opponent: decide
