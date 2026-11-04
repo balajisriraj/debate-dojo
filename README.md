@@ -6,6 +6,14 @@ DebateDojo is a practice ring for arguing. Prepare for a formal debate, rehearse
 
 <!-- The film: drag promo/out/debate-dojo-promo-web.mp4 onto this line in the GitHub editor, replacing this note. -->
 
+
+
+
+
+
+https://github.com/user-attachments/assets/3e4ab49a-5970-41f1-9cfd-072720faa780
+
+
 ## What it shows
 
 | | |
