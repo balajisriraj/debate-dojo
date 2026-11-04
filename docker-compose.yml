@@ -1,0 +1,22 @@
+# The API and the web UI on http://localhost:8080. The session log is SQLite, kept in a volume.
+#   cp .env.example .env   # add ANTHROPIC_API_KEY, or leave it empty to run on the scripted model
+#   docker compose up --build
+services:
+  api:
+    build: ./backend
+    env_file: .env
+    environment:
+      DEBATEDOJO_DB_PATH: /app/data/debatedojo.db
+      DEBATEDOJO_CORS_ORIGINS: '["http://localhost:8080"]'
+    volumes: [dojo:/app/data]
+
+  web:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports: ["8080:80"]
+    depends_on:
+      api: { condition: service_healthy }
+
+volumes:
+  dojo:
