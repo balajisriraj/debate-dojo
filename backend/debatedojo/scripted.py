@@ -567,7 +567,7 @@ def _sales(ctx: dict, last: str, opps: list[str], seed: str) -> str:
     elif prev is None and not opps:
         if qs:
             parts.append(
-                f'You asked "{shorten(qs[0], 14)}" Honestly, it\'s mostly manual at the moment, and it takes more time than anyone would like.'
+                f'You asked "{shorten(qs[0], 14)}?" Honestly, it\'s mostly manual at the moment, and it takes more time than anyone would like.'
             )
         else:
             parts.append(f'Okay, thanks. So "{key_point(last, 12)}".')

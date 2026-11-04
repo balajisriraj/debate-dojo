@@ -37,6 +37,7 @@ class Format(BaseModel):
     id: str
     name: str
     mode: Mode
+    order: int = 99
     blurb: str
     phases: list[Phase] = Field(min_length=1)
 
@@ -138,7 +139,7 @@ class Catalog:
                 raise ValueError(f"No persona for mode {mode}")
 
     def formats_for(self, mode: str) -> list[Format]:
-        return [f for f in self.formats.values() if f.mode == mode]
+        return sorted((f for f in self.formats.values() if f.mode == mode), key=lambda f: (f.order, f.id))
 
     def format(self, format_id: str) -> Format:
         try:

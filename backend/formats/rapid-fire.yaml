@@ -1,6 +1,7 @@
 id: rapid-fire
 name: Rapid fire
 mode: debate
+order: 3
 blurb: Five quick exchanges. One point per turn, no warm-up.
 phases:
   - id: rapid

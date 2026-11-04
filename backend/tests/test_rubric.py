@@ -62,7 +62,7 @@ def test_scorecard_missing_a_criterion_is_rejected():
 def test_scorecard_scores_are_clamped_and_dashes_cleaned():
     raw = _card("Thanks", score=10)
     raw.scores[0].score = 14
-    raw.summary = "Good — mostly."
+    raw.summary = "Good" + chr(0x2014) + "mostly."
     card = normalise_scorecard(raw, "sales", ["Thanks"])
     assert card["scores"][0]["score"] == 10 and card["summary"] == "Good - mostly."
 

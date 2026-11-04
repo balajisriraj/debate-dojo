@@ -1,6 +1,7 @@
 id: sales
 name: Objection drill
 mode: sales
+order: 1
 blurb: Open, handle four objections, then close for a next step.
 phases:
   - id: opening

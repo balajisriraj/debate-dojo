@@ -3,6 +3,7 @@
 id: oxford
 name: Oxford-style
 mode: debate
+order: 1
 blurb: Three set speeches each. Build your case, take theirs apart, then land it.
 phases:
   - id: opening

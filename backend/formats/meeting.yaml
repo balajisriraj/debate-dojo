@@ -1,6 +1,7 @@
 id: meeting
 name: Meeting run-through
 mode: meeting
+order: 1
 blurb: Pitch your proposal, take the pushback, then make your ask.
 phases:
   - id: pitch

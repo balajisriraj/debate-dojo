@@ -1,6 +1,7 @@
 id: lincoln-douglas
 name: Lincoln-Douglas-style
 mode: debate
+order: 2
 blurb: A value-led case, a cross-examination you lead, then a rebuttal.
 phases:
   - id: constructive
