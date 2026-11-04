@@ -282,8 +282,9 @@ class Store:
                 "INSERT INTO scores (session_id, mode, criterion, score, created_at) VALUES (?, ?, ?, ?, ?)",
                 [(session_id, mode, s["criterion"], s["score"], stamp) for s in scorecard["scores"]],
             )
+            # A bout keeps the moment it first finished, so re-judging it never moves it in the record.
             self.db.execute(
-                "UPDATE sessions SET status = 'finished', overall = ?, finished_at = ? WHERE id = ?",
+                "UPDATE sessions SET status = 'finished', overall = ?, finished_at = COALESCE(finished_at, ?) WHERE id = ?",
                 (scorecard["overall"], stamp, session_id),
             )
 

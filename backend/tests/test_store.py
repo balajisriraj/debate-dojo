@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 from debatedojo.store import Store
 
 SLOT = {"index": 0, "phase_id": "opening", "phase_name": "Opening", "exchange": 1}
@@ -67,9 +69,13 @@ def test_report_finishes_the_session_and_feeds_progress():
     assert [p["id"] for p in progress] == [first, second]
     assert progress[1]["scores"] == {"argument": 7, "evidence": 6}
     assert store.progress("sales") == []  # unfinished sessions do not count
-    # Re-judging replaces the scores instead of duplicating them.
-    store.save_report(first, "debate", {"overall": 90, "scores": [{"criterion": "argument", "score": 9}]}, {})
-    assert store.progress("debate")[0]["scores"] == {"argument": 9}
+    # Re-judging replaces the scores instead of duplicating them, and the bout keeps its place in the record.
+    finished = store.session(first)["finished_at"]
+    with patch("debatedojo.store.now", return_value="2999-01-01T00:00:00+00:00"):
+        store.save_report(first, "debate", {"overall": 90, "scores": [{"criterion": "argument", "score": 9}]}, {})
+    progress = store.progress("debate")
+    assert [p["id"] for p in progress] == [first, second]
+    assert progress[0]["scores"] == {"argument": 9} and progress[0]["finished_at"] == finished
 
 
 def test_deleting_a_session_removes_its_log():
