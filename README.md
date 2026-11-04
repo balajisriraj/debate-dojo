@@ -4,15 +4,9 @@
 
 DebateDojo is a practice ring for arguing. Prepare for a formal debate, rehearse a proposal against a sceptical stakeholder, or drill sales objections against a buyer who has heard it all. You speak or type against a turn clock. The opponent answers what you actually said, and a fact-checker flags shaky claims on the transcript as you go. At the bell, a judge scores you against a rubric, quoting your own words as evidence, and a coach rewrites your weakest turn. Every session is logged, so the record shows whether practice is working.
 
-<!-- The film: drag promo/out/debate-dojo-promo-web.mp4 onto this line in the GitHub editor, replacing this note. -->
-
-
-
-
-
-
 https://github.com/user-attachments/assets/3e4ab49a-5970-41f1-9cfd-072720faa780
 
+<sub>▶ The film, with sound (2 min 18 s). <a href="#the-film">How it was made</a>.</sub>
 
 ## What it shows
 
